@@ -14,11 +14,12 @@ This repository contains some Python helper code to help you perform Key Driver 
 At all stages, the data can be re-sliced, allowing drilldown into specific aspects of data, or summarised into top-level KPIs. The code is designed to be used in conjunction with pandas DataFrames, and can be used within a Jupyter notebook or other Python environment.
 
 ### Assumptions
-To do this, we make a few assumptions about the data:
+For the metric decomposition to be successful, we make a few assumptions about the data to be treated:
 
 1. The target variable is a continuous variable
 2. The target variable is a product of the independent variables, and thus can be represented as a funnel
 3. The independent variables are generally consistent in sign
+4. The dimensions for analysis are categorical, and can be treated as exchangeable.
 
 In general, the second step can generally be achieved, though you may need to rethink additive relationships (such as losses due to discounts) in order to satisfy this condition.
 
