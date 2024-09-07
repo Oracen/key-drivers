@@ -9,7 +9,7 @@ This repository contains some Python helper code to help you perform Key Driver 
 
 1. Metric Decomposition: Decompose the change in the metric into the change in the factors that make up the metric. These factors will be denominated in the value of the top-level metric, and are additive (and thus can be grouped via summation without fear).
 2. Category Merging: To clean up many similar-behaving small dimensional categories into a larger, more meaningful category, we apply a clustering procedure to the raw dimensions based on the metric decomposition behaviour. This makes for more meaningful notions of "key drivers".
-3. Finally, we apply a process to identify the largest contributors to the change in the target metric. This is done by calculating the change in the target metric for each combination of dimensions, and flagging those with a small membership but large change in the target.
+3. Key Driver Identification: Finally, we apply a process to identify the largest contributors to the change in the target metric. This is done by calculating the change in the target metric for each combination of dimensions, and flagging those with a small membership but large change in the target.
 
 At all stages, the data can be re-sliced, allowing drilldown into specific aspects of data, or summarised into top-level KPIs. The code is designed to be used in conjunction with pandas DataFrames, and can be used within a Jupyter notebook or other Python environment.
 
@@ -25,10 +25,10 @@ In general, the second step can generally be achieved, though you may need to re
 
 ### Further Reading
 
-My work was motivated by the following posts:
+Work on general decomposition was motivated by the following posts:
 
-1. [Decomposing funnel metrics](https://maxhalford.github.io/blog/funnel-decomposition/)
-1. [Answering "Why did the KPI change?" using decomposition](https://maxhalford.github.io/blog/kpi-evolution-decomposition/)
+- [Decomposing funnel metrics](https://maxhalford.github.io/blog/funnel-decomposition/)
+- [Answering "Why did the KPI change?" using decomposition](https://maxhalford.github.io/blog/kpi-evolution-decomposition/)
 
 
 ## Example Code
