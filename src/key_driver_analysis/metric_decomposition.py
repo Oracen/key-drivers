@@ -1,4 +1,5 @@
 import itertools
+from operator import is_
 from typing import List
 
 import pandas as pd
@@ -98,3 +99,23 @@ def decompose_funnel_metrics(
 
     start_idx = 1 if skip_first_row else 0
     return pd.concat(output, axis=1)[start_idx:].reset_index()
+
+
+def validate_funnel_construction(
+    df_funnel: pd.DataFrame, funnel_cols: List[str], target: pd.Series
+) -> bool:
+    error = (df_funnel[funnel_cols].prod(axis=1) - target).abs().max()
+    is_close = error < 1e-6
+    if not is_close:
+        print(f"Large error denotes misspecification; check formula. Error: {error}")
+    return is_close
+
+
+def validate_decomposition(
+    df_metrics: pd.DataFrame, metric_cols: List[str], target: pd.Series
+) -> bool:
+    error = (df_metrics[metric_cols].sum(axis=1) - target).abs().max()
+    is_close = error < 1e-6
+    if not is_close:
+        print(f"Large error denotes misspecification; check formula. Error: {error}")
+    return is_close
