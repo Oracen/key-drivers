@@ -1,9 +1,15 @@
 import pathlib
 from dataclasses import dataclass
+from operator import is_
 from typing import Dict, List, Optional
 
 import numpy as np
 import pandas as pd
+
+URL = (
+    "https://www.kaggle.com/competitions/"
+    "store-sales-time-series-forecasting/data?select=stores.csv"
+)
 
 BASE_PRICES = {
     "AUTOMOTIVE": 28,
@@ -74,10 +80,17 @@ def categorise_openings(months_since_open: int) -> str:
 def load_demo_data(
     path: str, avg_price_override: Optional[Dict[str, float]]
 ) -> DemoData:
-    # Average price of an item purchased in each department
 
-    avg_prices = {**BASE_PRICES, **(avg_price_override or {})}
     base_path = pathlib.Path(path)
+
+    if not (base_path / "train.csv").is_file():
+        raise FileNotFoundError(
+            f"Missing train.csv, be sure you've downloaded the dataset. See {URL} "
+            "to download these files."
+        )
+
+    # Average price of an item purchased in each department
+    avg_prices = {**BASE_PRICES, **(avg_price_override or {})}
 
     df_sales = pd.read_csv(base_path / "train.csv")
     df_transactions = pd.read_csv(base_path / "transactions.csv")
