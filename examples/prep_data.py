@@ -52,7 +52,7 @@ BASE_PRICES = {
 class DemoData:
     df_sales: pd.DataFrame
     df_stores: pd.DataFrame
-    group_cols: List[str]
+    group_variables: List[str]
     funnel_variables: List[str]
 
 
@@ -78,7 +78,7 @@ def categorise_openings(months_since_open: int) -> str:
 
 
 def load_demo_data(
-    path: str, avg_price_override: Optional[Dict[str, float]]
+    path: str, avg_price_override: Optional[Dict[str, float]] = None
 ) -> DemoData:
 
     base_path = pathlib.Path(path)
@@ -92,6 +92,7 @@ def load_demo_data(
     # Average price of an item purchased in each department
     avg_prices = {**BASE_PRICES, **(avg_price_override or {})}
 
+    # Load in data and do some basic conversions
     df_sales = pd.read_csv(base_path / "train.csv")
     df_transactions = pd.read_csv(base_path / "transactions.csv")
     df_stores = pd.read_csv(base_path / "stores.csv")
@@ -103,6 +104,7 @@ def load_demo_data(
     for item in [df_sales, df_transactions]:
         item["date"] = pd.to_datetime(item.date)
 
+    # Based on the information provided, develop our top-level KPI
     base_columns = ["sales", "gross_profit", "net_profit"]
 
     df_sales["price"] = df_sales.family.map(avg_prices)
@@ -114,9 +116,8 @@ def load_demo_data(
     df_sales["promotion_cost"] = df_sales.gross_profit * df_sales.profit_discount_factor
     df_sales["net_profit"] = df_sales.gross_profit - df_sales.promotion_cost
 
-    # There's some weird stuff e.g. groceries spiking in and out, but eh its enough for
-    # a quick example
-
+    # We don't have a per-product breakdown of transactions, so we'll just sum them out
+    # to make the joins to transactions simple
     df_sales = df_sales.groupby(["store_nbr", "date"])[base_columns].sum()
 
     df_sales = (
@@ -134,6 +135,8 @@ def load_demo_data(
         .reset_index()
     )
 
+    # Add some additional context to the stores to make the decomposition more
+    # interesting
     store_openings = (
         (
             (
@@ -172,6 +175,6 @@ def load_demo_data(
     return DemoData(
         df_sales=df_sales,
         df_stores=df_stores,
-        group_cols=group_var,
+        group_variables=group_var,
         funnel_variables=funnel_var,
     )
