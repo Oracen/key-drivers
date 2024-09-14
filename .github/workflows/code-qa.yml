@@ -48,4 +48,4 @@ jobs:
           python3 -m venv fresh_env
           . fresh_env/bin/activate
           pip install dist/*.whl
-          dbtv-gen --help
+          python -c "import key_drivers"
