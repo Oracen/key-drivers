@@ -1,3 +1,12 @@
+## 0.1.5 (2024-09-14)
+
+### Fix
+
+- Remove Mypy from linting until such a time as I can set the stubs properly
+- Remove unused import that was autoimported
+- Rename the package to avoid a used namespace in PyPI
+- Correct code producing type errors for demo notebook
+
 ## 0.1.4 (2024-09-14)
 
 ### Fix
