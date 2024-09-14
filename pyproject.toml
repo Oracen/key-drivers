@@ -1,10 +1,10 @@
 [project]
-name = "key_driver_analysis"
-version = "0.1.0"
+name = "key-drivers"
+version = "0.1.1"
 description = "A little helper to help automatically find key drivers of KPIs through time."
 authors = [{ name = "Oracen", email = "alex.stenlake@gmail.com" }]
 dependencies = ["scikit-learn>=1.5.1", "umap-learn>=0.5.6", "pandas>=2.2.2"]
-requires-python = ">=3.11"
+requires-python = ">=3.10,<3.12"
 readme = "README.md"
 license = { text = "MIT" }
 
