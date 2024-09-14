@@ -1,12 +1,12 @@
 [project]
 name = "key-drivers"
-version = "0.1.2"
 description = "A little helper to help automatically find key drivers of KPIs through time."
 authors = [{ name = "Oracen", email = "alex.stenlake@gmail.com" }]
 dependencies = ["scikit-learn>=1.5.1", "umap-learn>=0.5.6", "pandas>=2.2.2"]
 requires-python = ">=3.10,<3.12"
 readme = "README.md"
 license = { text = "MIT" }
+dynamic = ["version"]
 
 [build-system]
 requires = ["pdm-backend"]
