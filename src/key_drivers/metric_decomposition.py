@@ -1,5 +1,4 @@
 import itertools
-from operator import is_
 from typing import List
 
 import pandas as pd
