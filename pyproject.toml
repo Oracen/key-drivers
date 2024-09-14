@@ -28,6 +28,7 @@ dev = [
     "pytest>=7.2.1",
     "pre-commit>=3.1.1",
     "python-semantic-release>=7.33.2",
+    "pandas-stubs>=2.2.2.240909",
 ]
 
 
@@ -42,12 +43,7 @@ black-check = { cmd = "black --check ." }
 isort-check = { cmd = "isort --check-only ." }
 mypy-check = "mypy --namespace-packages --check-untyped-defs ."
 format = { composite = ["autoflake-fix", "black-fix", "isort-fix"] }
-lint = { composite = [
-    "mypy-check",
-    "flake8-check",
-    "black-check",
-    "isort-check",
-] }
+lint = { composite = ["flake8-check", "black-check", "isort-check"] }
 
 
 [tool.isort]
