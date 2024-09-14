@@ -16,6 +16,10 @@ build-backend = "pdm.backend"
 [tool.pdm]
 distribution = true
 
+[tool.pdm.version]
+source = "scm"
+write_to = "src/key_drivers/__version__.py"
+
 [tool.pdm.dev-dependencies]
 dev = [
     "jupyter>=1.1.1",
