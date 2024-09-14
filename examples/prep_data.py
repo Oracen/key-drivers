@@ -1,6 +1,5 @@
 import pathlib
 from dataclasses import dataclass
-from operator import is_
 from typing import Dict, List, Optional
 
 import numpy as np
@@ -66,6 +65,8 @@ def promotions_to_profit_discount_factor(promotions, avg_price):
 # Add some quick additional context - apologies if the pandas-fu is a bit wonky.
 # Long and short of it is we want how many months since dataset begin we start
 # seeing data
+
+
 def categorise_openings(months_since_open: int) -> str:
     # I know this won't age well on a dynamic dataset, sue me
     if months_since_open == 0:
