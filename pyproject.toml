@@ -42,7 +42,7 @@ test = { shell = "pytest ." }
 autoflake-fix = { cmd = "autoflake ." }
 black-fix = { cmd = "black ." }
 isort-fix = { cmd = "isort ." }
-flake8-check = { cmd = "flake8 ." }
+flake8-check = { cmd = "flake8 . --config=.flake8" }
 black-check = { cmd = "black --check ." }
 isort-check = { cmd = "isort --check-only ." }
 mypy-check = "mypy --namespace-packages --check-untyped-defs ."
