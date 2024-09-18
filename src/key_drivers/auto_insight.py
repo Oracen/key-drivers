@@ -214,7 +214,7 @@ def reduce_cat_columns(
     id_col: str,
     cat_cols: List[str],
     target_cols: List[str],
-    member_pct: float = 0.75,
+    member_prop: float = 0.75,
     copy: bool = True,
 ):
     """Reduce the number of categories in a DataFrame by clustering similar behaviours
@@ -223,7 +223,7 @@ def reduce_cat_columns(
         df_joined: DataFrame with columns [cat_cols, target_cols]
         cat_cols: List of columns to reduce
         target_cols: List of target columns
-        member_pct: Minimum proportion of a category in a cluster to consider
+        member_prop: Minimum proportion of a category in a cluster to consider
         copy: If True, do not mutate the input DataFrame
 
     Returns:
@@ -306,9 +306,9 @@ def reduce_cat_columns(
         # and will just confuse things
         props.drop(-1, inplace=True, errors="ignore")
 
-        # If it has member_pct% of the data in a single cluster we deem this a common
+        # If it has member_prop% of the data in a single cluster we deem this a common
         # set of behaviours
-        props = props[props > member_pct].reset_index()
+        props = props[props > member_prop].reset_index()
         if len(props) == 0:
             # No common behaviours, skip
             continue
