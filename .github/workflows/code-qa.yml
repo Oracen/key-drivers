@@ -24,8 +24,9 @@ jobs:
           cache: true
       - name: Install local
         run: pdm install
-      - name: Check PWD
-        run: rm -rf ./src/src
+      - name: Clean up unusual files
+        run: rm -R ./src/src
+      - name: Run linting
         run: pdm lint
       - name: Run testing
         run: pdm test
