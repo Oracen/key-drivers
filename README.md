@@ -1,6 +1,9 @@
 # Key Drivers
 ### A Python library for helping making sense of business data
 
+## Warning
+Pre-0.2.0, the API is subject to change. Please be aware that the code is still in development, and may not be suitable for production use.
+
 ## Introduction
 Key Driver Analysis is a statistical technique used to identify the key drivers of a target variable. In the context of KPI analysis within a dimensional model, a key driver is a dimension (or combination of dimensions) that has an outsied influence on the change in target KPI. For example, in a sales dataset, the key drivers of sales might be the store location, the product category, or the type of store.
 
