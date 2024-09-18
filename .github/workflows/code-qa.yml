@@ -25,7 +25,7 @@ jobs:
       - name: Install local
         run: pdm install
       - name: Run linting
-        run: pdm lint
+        run: ls -la && pdm lint
       - name: Run testing
         run: pdm test
   test-build:
