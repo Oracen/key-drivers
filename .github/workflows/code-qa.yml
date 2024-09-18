@@ -25,9 +25,11 @@ jobs:
       - name: Install local
         run: pdm install
       - name: Check PWD
-        run: pwd
+        run: ls -la ./src
+      - name: Check KD
+        run: ls -la ./src/key_drivers
       - name: Run linting
-        run: ls -la ./src && pdm lint
+        run: ls -la ./src/src && pdm lint
       - name: Run testing
         run: pdm test
   test-build:
