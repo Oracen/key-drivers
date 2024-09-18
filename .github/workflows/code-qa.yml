@@ -4,6 +4,7 @@ on:
     types: [opened, reopened, ready_for_review, synchronize]
     branches:
       - 'main'
+      - 'dev'
 jobs:
   run-tests:
     name: run-tests
@@ -12,9 +13,9 @@ jobs:
       matrix:
         python-version: [ "3.11"]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup PDM
-        uses: pdm-project/setup-pdm@v3
+        uses: pdm-project/setup-pdm@v4
         with:
           python-version: ${{ matrix.python-version }}
           architecture: x64
@@ -23,6 +24,8 @@ jobs:
           cache: true
       - name: Install local
         run: pdm install
+      - name: Clean up unusual files
+        run: rm -R ./src/src
       - name: Run linting
         run: pdm lint
       - name: Run testing
@@ -32,9 +35,9 @@ jobs:
     needs: run-tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Setup PDM
-        uses: pdm-project/setup-pdm@v3
+        uses: pdm-project/setup-pdm@v4
         with:
           python-version: 3.11
           architecture: x64
