@@ -209,7 +209,7 @@ def find_key_drivers(
     return top_drivers
 
 
-def reduce_cat_colums(
+def reduce_cat_columns(
     df_joined: pd.DataFrame,
     id_col: str,
     cat_cols: List[str],
