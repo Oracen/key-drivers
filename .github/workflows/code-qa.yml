@@ -24,8 +24,10 @@ jobs:
           cache: true
       - name: Install local
         run: pdm install
+      - name: Check PWD
+        run: pwd
       - name: Run linting
-        run: ls -la && pdm lint
+        run: ls -la ./src && pdm lint
       - name: Run testing
         run: pdm test
   test-build:
